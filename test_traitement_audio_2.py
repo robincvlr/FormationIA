@@ -1,21 +1,23 @@
 import os
 import wave
 
-import pylab
+import pylab as pb
 import numpy as np
 
+#Fréquence d'échantillonage = 2 * fc
+FE = 10000
+#NFFT echantillonnage - length of the windowing segments
+NFFT = 1024
 
 def graph_spectrogram(wav_file):
     sound_info, frame_rate = get_wav_info(wav_file)
-    pylab.figure(num=None, figsize=(19, 12))
-    pylab.subplot(111)
-    pylab.title('spectrogram of %r' % wav_file)
-    NFFT = 1024       # the length of the windowing segments
-    Fs = int(1.0 / 0.0005)  # the sampling frequency
+    pb.figure(num=None, figsize=(19, 12))
+    pb.subplot(111)
+    pb.title('spectrogram of %r' % wav_file)
     n=2100
-    pylab.specgram(sound_info[n:n+256*256], NFFT=NFFT, Fs=Fs, noverlap=1000, cmap='PuOr')
+    pb.specgram(sound_info[n:n+256*256], NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
     pylab.savefig('spectrogram_parole.png')
-
+    #pb.savefig('spectrogram_musique.png')
 
 def get_wav_info(wav_file):
     wav = wave.open(wav_file, 'r')
@@ -26,5 +28,6 @@ def get_wav_info(wav_file):
     return sound_info, frame_rate
 
 if __name__ == '__main__': # Main function
-    wav_file = 'parole2.wav' # Filename of the wav file
+    wav_file = 'ben_bravo.wav' # Filename of the wav file
     graph_spectrogram(wav_file)
+    
