@@ -2,7 +2,7 @@ import os
 import wave
 
 import pylab
-import numpy
+import numpy as np
 
 
 def graph_spectrogram(wav_file):
@@ -10,8 +10,11 @@ def graph_spectrogram(wav_file):
     pylab.figure(num=None, figsize=(19, 12))
     pylab.subplot(111)
     pylab.title('spectrogram of %r' % wav_file)
-    pylab.specgram(sound_info, Fs=frame_rate, cmap='PuOr')
-    pylab.savefig('spectrogram_musique.png')
+    NFFT = 1024       # the length of the windowing segments
+    Fs = int(1.0 / 0.0005)  # the sampling frequency
+    n=2100
+    pylab.specgram(sound_info[n:n+256*256], NFFT=NFFT, Fs=Fs, noverlap=1000, cmap='PuOr')
+    pylab.savefig('spectrogram_parole.png')
 
 
 def get_wav_info(wav_file):
