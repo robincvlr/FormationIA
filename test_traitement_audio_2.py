@@ -32,9 +32,11 @@ def graph_spectrogram(wav_file, name):
     n1 = int(len(sound_info)/6)
     n2 = int(len(sound_info)*5/6)
     #Desine le spectrogramme d une partie de l audio
-    pb.specgram(sound_info[n1:n2], NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
+    # pb.specgram(sound_info[n1:n2], NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
+    pb.specgram(sound_info, NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
     #Enregistrement du spectrogramme
-    pb.savefig('Base_spect_parole/' +name + '.png')
+    #pb.savefig('Base_spect_parole/' +name + '.png')
+    pb.savefig('Base_spect_musique/' +name + '.png')
 
 
 
@@ -44,7 +46,9 @@ if __name__ == '__main__':
     i = 0
     while i < 936 :
         i = i+1
-        wav_file_parole = 'Base_parole/Parole (' + str(i) + ').wav' # Filename of the wav file
-        name_png = 'spectrogram_parole_' + str(i)
+       # wav_file_parole = 'Base_parole/Parole (' + str(i) + ').wav' # Filename of the wav file
+        wav_file_parole = 'sons_musique/Musique (' + str(i) + ').wav' # Filename of the wav file
+       # name_png = 'spectrogram_parole_' + str(i)
+        name_png = 'spectrogram_musique_' + str(i)
         graph_spectrogram(wav_file_parole, name_png)
         
