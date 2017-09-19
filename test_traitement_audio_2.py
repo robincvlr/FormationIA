@@ -1,6 +1,7 @@
 ##############Import librairie
 import wave
 import pylab as pb
+import numpy as np
 
 
 #############Constante
@@ -15,37 +16,35 @@ def get_wav_info(wav_file):
     #Ouverture du fichier en lecture
     wav = wave.open(wav_file, 'r')
     frames = wav.readframes(-1)
-    sound_info = pb.fromstring(frames, 'Int64')
-    frame = wav.getnframes()
-    print(frame)
-    rate = wav.getframerate()
-    #Calcul duree de l audio
-    duration = frame/float(rate)
+    sound_info = np.fromstring(frames, 'Int16')
     wav.close()
     #Return
-    return sound_info, duration
+    return sound_info
 
 #############Fonction enregistrement du spectrogramme
 def graph_spectrogram(wav_file, name):
     #Recupere les infos de  audio
-    sound_info, duration = get_wav_info(wav_file)
+    sound_info = get_wav_info(wav_file)
     pb.figure(num=None, figsize=(19, 12))
     pb.subplot(111)
     pb.title('spectrogram of %r' % wav_file)
-    #Nombre dechantillons
-    n=int(duration*FE)
-    print(n)
-    n=int(44100/3)
+    #Definition des bornes de l audio a utiliser
+    n1 = int(len(sound_info)/6)
+    n2 = int(len(sound_info)*5/6)
     #Desine le spectrogramme d une partie de l audio
-    pb.specgram(sound_info[n:n+256*256], NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
+    pb.specgram(sound_info[n1:n2], NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
     #Enregistrement du spectrogramme
-    pb.savefig(name + '.png')
+    pb.savefig('Base_spect_parole/' +name + '.png')
 
 
 
 #############Fonction main
 if __name__ == '__main__':
     #Boucle de traitement des audios
-    wav_file_parole = 'parole2.wav' # Filename of the wav file
-    wav_file_musique = 'musique.wav' # Filename of the wav file
-    graph_spectrogram(wav_file_parole, 'spectrogram_parole')
+    i = 0
+    while i < 936 :
+        i = i+1
+        wav_file_parole = 'Base_parole/Parole (' + str(i) + ').wav' # Filename of the wav file
+        name_png = 'spectrogram_parole_' + str(i)
+        graph_spectrogram(wav_file_parole, name_png)
+        
