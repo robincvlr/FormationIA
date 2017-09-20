@@ -35,8 +35,8 @@ def graph_spectrogram(wav_file, name):
     # pb.specgram(sound_info[n1:n2], NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
     pb.specgram(sound_info, NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
     #Enregistrement du spectrogramme
-    #pb.savefig('Base_spect_parole/' +name + '.png')
-    pb.savefig('Base_spect_musique/' +name + '.png')
+    #pb.savefig('training_set/Base_spect_parole/' +name + '.png')
+    pb.savefig('training_set/Base_spect_musique/' +name + '.png')
 
 
 
