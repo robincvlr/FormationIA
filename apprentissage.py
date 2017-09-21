@@ -69,22 +69,22 @@ classifier.fit_generator(
 
 #serialise model to json
 classifier_json = classifier.to_json()
-with open('model.json', "w") as json_file :
+with open('model_voice_music.json', "w") as json_file :
     json_file.write(classifier_json)
     
 # serialize weights to HDF5
-classifier.save_weights("model.h5")
+classifier.save_weights("model_voice_music.h5")
 print("Classifier save on disk")
 
 # Load json and create model
 from keras.models import model_from_json
-json_file = open('model.json', 'r')
+json_file = open('model_voice_music.json', 'r')
 loaded_model_json = json_file.read()
 json_file.close()
 loaded_model = model_from_json(loaded_model_json)
 
 #load weights into new model
-loaded_model.load_weights('model.h5')
+loaded_model.load_weights('model_voice_music.h5')
 print("Loaded model from disk")
 
 #Making a prediction 
@@ -94,7 +94,7 @@ from keras.preprocessing import image
 
 # Load the image with keras 
 # arg : path / target_size same as the test_set
-test_image = image.load_img('dataset/single_prediction/ok.jpg', target_size=(64, 64))
+test_image = image.load_img('prediction_music/spectrogram_musique_2.png', target_size=(64, 64))
 # passer l'image en tableau
 test_image = image.img_to_array(test_image)
 
@@ -106,7 +106,7 @@ classifier.predict(test_image)
 #Correspondance 
 result  = classifier.predict(test_image)
 
-# 1 est un chat ou un chien ???
+# 1 est une voix ou une musique ???
 train_generator.class_indices
 
 if result [0][0] == 1: 

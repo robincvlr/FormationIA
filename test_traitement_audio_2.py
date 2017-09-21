@@ -36,9 +36,8 @@ def graph_spectrogram(wav_file, name):
     pb.specgram(sound_info, NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
     #Enregistrement du spectrogramme
     #pb.savefig('training_set/Base_spect_parole/' +name + '.png')
-    pb.savefig('training_set/Base_spect_musique/' +name + '.png')
-
-
+    #pb.savefig('training_set/Base_spect_musique/' +name + '.png')
+    pb.savefig('prediction_music/' +name + '.png')
 
 #############Fonction main
 if __name__ == '__main__':
@@ -47,7 +46,8 @@ if __name__ == '__main__':
     while i < 936 :
         i = i+1
        # wav_file_parole = 'Base_parole/Parole (' + str(i) + ').wav' # Filename of the wav file
-        wav_file_parole = 'sons_musique/Musique (' + str(i) + ').wav' # Filename of the wav file
+       #wav_file_parole = 'sons_musique/Musique (' + str(i) + ').wav' # Filename of the wav file
+        wav_file_parole = 'prediction_music/prediction (' + str(i) + ').wav' # Filename of the wav file
        # name_png = 'spectrogram_parole_' + str(i)
         name_png = 'spectrogram_musique_' + str(i)
         graph_spectrogram(wav_file_parole, name_png)
