@@ -5,7 +5,7 @@ import numpy as np
 
 
 #############Constante
-#Fréquence d'échantillonage = 2 * fc
+#Fréquence d'échantillonage = 2 * fc Shanon
 FE = 22050
 #NFFT echantillonnage - length of the windowing segments
 NFFT = 1024
@@ -28,12 +28,15 @@ def graph_spectrogram(wav_file, name):
     pb.figure(num=None, figsize=(19, 12))
     pb.subplot(111)
     pb.title('spectrogram of %r' % wav_file)
+    #Suppression des axes pour supprimer les parasites
+    pb.axes.get_xaxis().set_visible(False)
+    pb.axes.get_yaxis().set_visible(False)
     #Definition des bornes de l audio a utiliser
     n1 = int(len(sound_info)/6)
     n2 = int(len(sound_info)*5/6)
     #Desine le spectrogramme d une partie de l audio
     # pb.specgram(sound_info[n1:n2], NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
-    pb.specgram(sound_info, NFFT=NFFT, Fs=FE, noverlap=1000, cmap='jet')
+    pb.specgram(sound_info, NFFT=NFFT, Fs=FE, noverlap=1000, cmap='binary') #Noir et blanc
     #Enregistrement du spectrogramme
     #pb.savefig('training_set/Base_spect_parole/' +name + '.png')
     #pb.savefig('training_set/Base_spect_musique/' +name + '.png')
