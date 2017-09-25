@@ -14,13 +14,13 @@ def traitement(wav_file):
      sample_freq = 0
      sample_width = 0 
      # ouverture du fichier
-     wave_write = wave.openfp(wav_file)
+     wave_write = wave.openfp(wav_file, 'r')
      # valeur de l'echantillonn. en bits
      sample_width = wave_write.getsampwidth()
-     print(sample_width)
+     print ("sample width : %d" %sample_width)
      # Fréquence d'échantillonnage
      sample_freq = wave_write.getframerate() 
-     print(sample_freq)
+     print ("sample frequency : %d" %sample_freq) 
      wave.close()
      
      
