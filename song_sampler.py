@@ -14,7 +14,7 @@ def traitement(wav_file):
      sample_freq = 0
      sample_width = 0 
      # ouverture du fichier
-     wave_write = wave.open(wav_file, 'rb')
+     wave_write = wave.openfp(wav_file)
      # valeur de l'echantillonn. en bits
      sample_width = wave_write.getsampwidth()
      print(sample_width)
