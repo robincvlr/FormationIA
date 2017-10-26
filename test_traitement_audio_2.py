@@ -50,15 +50,15 @@ def graph_spectrogram(wav_file, name):
 #############Fonction main
 if __name__ == '__main__':
     #Boucle de traitement des audios
-    i = 0
-    while i < 936 :
+    i = 1
+    while i < 1000 :
         i = i+1
         
        # Filename of the wav file
-       # wav_file_parole = 'Base_parole/Parole (' + str(i) + ').wav' 
+       # wav_file_parole = 'sons_parole/Split_parole/Parole (' + str(i) + ').wav' 
        
        # Filename of the wav file
-        wav_file_parole = 'sons_musique/Musique (' + str(i) + ').wav' 
+        wav_file_parole = 'sons_musique\Split_music\Musique (' + str(i) + ').wav' 
        
        # Filename of the wav file
        #wav_file_parole = 'prediction_music/prediction (' + str(i) + ').wav'
